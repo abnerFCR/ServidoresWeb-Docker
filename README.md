@@ -44,6 +44,9 @@ docker pull ubuntu:latest
 ```sh
 docker run -it -d -p 3000:3000 --name=servidor1 ubuntu:latest /bin/bash
 ```
+```sh
+docker exec -it apache /bin/bash
+```
 
 9. Una vez dentro del contenedor actualizamos e instalamos nodejs y npm (siguiendo los pasos 1, 2, 3)
 
