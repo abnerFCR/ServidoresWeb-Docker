@@ -181,3 +181,9 @@ docker build -t [miapp] .
 ```sh
 docker run -p 4000:3000 -v /home/abner_cardona1997/tarea3:/app -t myappdistroless
 ```
+
+Ref:
+https://www.hostinger.es/tutoriales/instalar-nano-text-editor
+https://github.com/GoogleContainerTools/distroless
+https://platzi.com/tutoriales/1050-programacion-basica/296-instalar-e-iniciar-un-servidor-nodejs-en-linux-ubuntu-1404/
+https://github.com/sergioarmgpl/taller-docker
