@@ -80,7 +80,7 @@ app.get('/', function (req, res) {
 })
 
 app.get('/app', function (req, res) {
-  res.send('Abner Fernando Cardona Ramirez - 201603095  (Distroless)');
+  res.send('Abner Fernando Cardona Ramirez - 201603095');
   console.log("Informacion");
 })
 
@@ -102,5 +102,82 @@ nodejs index.js
 ## Servidor Web con imagen distroless de nodejs
 
 
+7. Creamos un directorio que enlazaremos posteriormente con el contenedor
+```sh
+mkdir nuevaCarpeta
+```
+8. Ingresamos en el contenedor y creamos un archivo Dockerfile
+```sh
+cd nuevaCarpeta
+nano Dockerfile
+```
+9. El archivo Dockerfile tendra el siguiente contenido 
 
+```sh
+FROM node:10 AS build-env
+ADD . /app
+WORKDIR /app
+RUN npm install --production
 
+FROM gcr.io/distroless/nodejs:10
+COPY --from=build-env /app /app
+WORKDIR /app
+EXPOSE 3000
+CMD ["hello_express.js"]
+```
+
+10. Creamos un archivo hello_express.js (nano hello_express.js) con el siguiente contenido
+
+```sh 
+nano hello_express.js
+```
+```sh
+const express = require('express')
+const app = express()
+const port = 3000
+
+app.get('/', (req, res) => res.send('Abner Fernando Cardona - 201603095 (Distroless)'))
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+```
+
+11. Creamos otro archivo llamado package.json (nano package.json) con el siguiente contenido:
+
+```sh
+nano package.json
+``
+
+```sh
+{
+  "name": "distroless-express",
+  "version": "1.0.0",
+  "description": "Distroless express node.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GoogleContainerTools/distroless.git"
+  },
+  "dependencies": {
+    "express": "4.16.3"
+  },
+  "author": "Bryant Hagadorn",
+  "license": "ISC"
+}
+```
+
+12. Instalamos las dependencias de npm. 
+
+```sh
+npm install
+```
+
+13. Construimos la imagen que utilizaremos con el archivo Dockerfile
+
+```sh
+docker build -t [miapp] .
+```
+
+14. Creamos el contenedor con docker un y exponemos el puerto del contenedor a uno de la maquina local conectando la carpeta donde esta nuestro servidor con una carpeta de nuestro contenedor distroless.
+
+```sh
+docker run -p 4000:3000 -v /home/abner_cardona1997/tarea3:/app -t myappdistroless
+```
