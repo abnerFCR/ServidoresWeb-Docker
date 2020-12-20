@@ -182,7 +182,7 @@ docker build -t [miapp] .
 14. Creamos el contenedor con docker un y exponemos el puerto del contenedor a uno de la maquina local conectando la carpeta donde esta nuestro servidor con una carpeta de nuestro contenedor distroless.
 
 ```sh
-docker run -p 4000:3000 -v /home/abner_cardona1997/tarea3:/app -t myappdistroless
+docker run -p 4000:3000 -v /home/abner_cardona1997/nuevaCarpeta:/app -t [miapp]
 ```
 
 Ref:
