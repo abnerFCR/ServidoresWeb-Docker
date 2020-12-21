@@ -149,7 +149,7 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
 ```sh
 nano package.json
-``
+```
 
 ```sh
 {
